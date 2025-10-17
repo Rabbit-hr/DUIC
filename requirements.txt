@@ -1,0 +1,8 @@
+numpy
+scikit-learn
+tensorflow==2.12.0
+keras==2.12.0
+os
+pickle
+tensorflow_addons==0.21.0
+subprocess
