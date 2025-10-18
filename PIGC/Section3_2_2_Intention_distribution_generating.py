@@ -46,7 +46,7 @@ def intention_distributions_leaner(theta):
     norm = K.sqrt(K.sum(K.square(similarity_matrix), axis=1, keepdims=True))
     similarity_matrix = similarity_matrix / (norm + K.epsilon())
     # Multiply each value of the matrix by temperature coefficient, calculate exp(-d(zi,zj))
-    τ = 2.0 #τ：temperature parameters
+    τ = 5.0 #τ：temperature parameters
     scaled_matrix = -(1/τ) * similarity_matrix
     #Eq.(7)
     loss_ = ourself_softmax_activation(scaled_matrix)
@@ -125,5 +125,6 @@ def intention_distribution_generator(dims,n_clusters):
     intent_guider = Model(inputs=theta_generator.input, outputs=sim_layer)
     opti = Adam(learning_rate=0.01)
     intent_guider.compile(optimizer=opti, loss=loss_intent_dot)
+
 
     return theta_generator,init_distribution,intent_guider
